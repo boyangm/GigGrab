@@ -3,5 +3,4 @@ node_modules
 npm-debug.log
 .env
 config.json
-sendgrid.env
-sendgrid.env
+sendgrid.env/*
