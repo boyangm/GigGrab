@@ -1,5 +1,6 @@
 require("dotenv").config();
-const apikey = '##';
+const apikey = 'sgPassword = process.env.SENDGRID_API_KEY;';
+fsPassword = process.env.FS_SECRET_KEY;
 var Kraken = require('kraken'),
     fs = require('fs');
 var db = require("../models");
@@ -8,11 +9,12 @@ const sgMail = require('@sendgrid/mail');
 let token;
 var password = process.env.krakenAPI_Secret;
 var krakenAPI = process.env.krakenAPI_Key;
+sgPassword = process.env.SENDGRID_API_KEY;
 var kraken = new Kraken({
     api_key: password,
     api_secret: krakenAPI
 });
-sgMail.setApiKey('##');
+sgMail.setApiKey(sgPassword);
 
 module.exports = function (app) {
     // Get all examples      

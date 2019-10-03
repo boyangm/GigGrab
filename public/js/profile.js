@@ -22,7 +22,7 @@ fileInput.addEventListener('change', (event) => {
     .then(res => {
       console.log('success: ', res);
         linkName.value = res.url;
-        console.log(image);
+        console.log(linkName.value);
     })
     .catch(err => {
       console.log(err)
