@@ -1,0 +1,71 @@
+<div id="formContainer">
+    <h3>Gift a Gig!</h3>
+    <div id="formArea">
+        <form action="/api/gigs" method="POST">
+        <label for="Title">title</label>
+            <input type="text" name="title"><br>
+        <label for="start">Start date:</label>
+       <input type="date" id="start" name="date"
+       value="YYYY-MM-DD">
+        <label for="location">Location</label>
+        <input type="text" name="location"><br>
+        <label for="location">Amount Offered:</label>
+        <input type="text" name="money"><br>
+        <label>Select Genre</label>
+        <label>Browser Select</label>
+        <select class="browser-default" name="genre">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="funk">Funk</option>
+            <option value="randb">R&B</option>
+            <option value="rock">Rock</option>
+            <option value="jazz">Jazz</option>
+            <option value="classical">Classical</option>
+            <option value="electronic">Electronic</option>
+            <option value="country">Country</option>
+            <option value="blues">Blues</option>
+        </select>
+          <label for="textarea1">Description</label>
+         <textarea id="textarea1" name="description" class="materialize-textarea"></textarea>
+        <p>Select your instruments:</p>
+        <div class="instruments">
+        <p>
+            <label>
+                <input name="instrument" type="checkbox" value="guitar" />
+                <span>Guitar</span>
+            </label>
+            <label>
+                <input name="instrument" type="checkbox" value="Bass"  />
+                <span>Bass</span>
+            </label>
+            <label>
+                <input name="instrument" type="checkbox" value="Keys" />
+                <span>Keys</span>
+            </label>
+            <label>
+                <input name="instrument" type="checkbox" value="Drums"  />
+                <span>Drums</span>
+            </label>
+            <label>
+                <input name="instrument" type="checkbox" value="Vocals"  />
+                <span>Vocals</span>
+            </label>
+            <label>
+                <input name="instrument" type="checkbox" value="Other"  />
+                <span>Other</span>
+            </label>
+        </p>
+
+   
+        </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+             <i class="material-icons right">send</i>
+        </button>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+});
+</script>
