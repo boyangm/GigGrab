@@ -45,7 +45,7 @@ more.forEach(link => {
           e.preventDefault();
           const UserId = button.getAttribute('UserId');
           const body = { UserId }
-          fetch('/api/giggrab', {
+          fetch(`/api/giggrab/${id}`, {
             method: 'post',
             body: JSON.stringify(body),
             headers: {

@@ -178,3 +178,30 @@ nav {
 #UserId{
   display:none;
 }
+#namepage{
+  position: relative;
+  width: 100%;
+  margin: 10px auto 0;
+  display: flex;
+  flex-flow: row;
+}
+#picContainer{
+  position: relative;
+  width: 25%;
+
+}
+#picContainer >img {
+  width: 100%;
+}
+#namepageContent{
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 75%;
+  text-align: center;
+
+}
+#gigHeader,
+#gigContent{
+  background-color: #bdc7d9;
+}

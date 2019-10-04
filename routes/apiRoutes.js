@@ -1,19 +1,13 @@
 require("dotenv").config();
 const apikey = 'sgPassword = process.env.SENDGRID_API_KEY;';
 fsPassword = process.env.FS_SECRET_KEY;
-var Kraken = require('kraken'),
     fs = require('fs');
 var db = require("../models");
 var jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail');
 let token;
 var password = process.env.krakenAPI_Secret;
-var krakenAPI = process.env.krakenAPI_Key;
 sgPassword = process.env.SENDGRID_API_KEY;
-var kraken = new Kraken({
-    api_key: password,
-    api_secret: krakenAPI
-});
 sgMail.setApiKey(sgPassword);
 
 module.exports = function (app) {
@@ -34,15 +28,21 @@ module.exports = function (app) {
         var decoded = jwt.verify(token, 'grabbygig');
         const gigs = db.Gigs;
         let band;
+        let name;
+        let id;
         const { title, date, location, money, genre, description, instrument } = req.body;
-        if (instrument > 1) {
+        console.log(instrument);
+        if (Array.isArray(instrument)) {
             band = instrument.join(', ');
         } else {
             band = instrument;
         }
         db.User.findOne({ where: { email: decoded.email } }).then(user =>{
-            gigs.create({ title, date, location, money, genre, description, instrument: band, UserId: user.get('id')})
+            name= user.name;
+            id=user.id;
+            gigs.create({ title, date, location, money, genre, description, instrument: band, UserId: user.get('id')} )
                 .then(data => {
+                    db.Event.create({Status:`${name} just posted a Gig!`, GigsId: data.id, UserId: id })
                     res.redirect('/');
                     console.log(data);
     
@@ -50,18 +50,19 @@ module.exports = function (app) {
 
         })
     });
-    app.post("/api/giggrab", function (req, res) {
+    app.post("/api/giggrab/:id", function (req, res) {
         const {token} = req.cookies;
+        const {id} = req.params;
         let TalentId;
         let TalentName;
         var decoded = jwt.verify(token, 'grabbygig');
-        const gigs = db.Gigs;
         const { UserId} = req.body;
         db.User.findOne({ where: { email: decoded.email} }).then( talent =>{
                 TalentId= talent.id;
                 TalentName = talent.name;
-
-            db.User.findOne({ where: { id: UserId } }).then(user =>{
+                
+                db.User.findOne({ where: { id: UserId } }).then(user =>{
+                db.Event.create({Status:`${TalentName} wants to Grab a Gig! from You`, open: 0,  GigsId: id,  UserId: TalentId }) 
                 console.log(user.email);
                 console.log(decoded.email);
                 const msg = {

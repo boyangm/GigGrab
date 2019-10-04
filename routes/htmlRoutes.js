@@ -60,7 +60,17 @@ module.exports = function (app) {
         res.render("profile", {});
 
     });
+    app.get("/users/:name",checktoken, function (req, res) {
+       const {name} = req.params;
+       console.log(name)
+       db.User.findOne({ where: { name } }).then(user =>{
+           let post = {user};
+           res.render("namepage", post);
+       })
+
+    });
     app.get("/giftgig", checktoken, function (req, res) {
+
         res.render("giftgig", {});
 
     });
