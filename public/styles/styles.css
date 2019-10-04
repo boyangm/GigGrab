@@ -56,7 +56,7 @@ background-color: #bdc7d9;
   text-shadow: black;
 }
 
-nav {
+nav,footer {
   background-color: #2a303b;
 }
 .btn, .btn-large, .btn-small {
@@ -64,7 +64,7 @@ nav {
   background-color: #2a303b;
 }
 
-.btn:hover, .btn-large:hover, .btn-small:hover {
+.btn:hover, .btn-large:hover, .btn-small:hover,.grabbed {
   color: #2a303b;;
   background-color: #6199ff ;
 }

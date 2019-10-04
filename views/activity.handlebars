@@ -1,0 +1,41 @@
+  <div class="mainContent">
+    <div id="profileWrapper">
+      <div id="profileArea">
+        <h3>Welcome Back!</h3>
+        <img id="profilePic"src={{user.image}} alt="profilePic">
+        <h5>{{user.name}}</h5>
+      <div class="stats">
+        <i class="material-icons star">star</i>
+        <h5>{{user.rating}}</h5>
+        </div> 
+      <div class="stats">
+        <h6>{{user.instrument}}</h6>
+        </div> 
+      <div class="stats">
+        <h6>number of gigs grabbed: </h6>
+        <h6>{{user.numberofGigs}}</h6>
+        </div> 
+      <div class="stats">
+        <h6>Money grabbed: </h6>
+        <h6>${{user.moneyEarned}}</h6>
+        </div> 
+        <div class="stats profileButtons">
+        <a class="waves-effect waves-light btn-large" href="/giftgig">Give A gig</a>
+        <a class="waves-effect waves-light btn-large" href="/users/{{user.name}}" id="editprofile" >Edit Profile</a>
+        </div>
+      </div>
+    </div>
+    <div id="postArea">
+      {{#each events}}
+      {{> events/events-block}}
+      {{/each}}
+    </div>
+      <div id="gigArea">
+    </div>
+  </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            
+
+<script src="/js/index.js"></script>

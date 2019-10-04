@@ -11,9 +11,18 @@ sgPassword = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(sgPassword);
 
 module.exports = function (app) {
-    // Get all examples      
+    // Get all examples     
     app.get("/api/gigs/:id", function (req, res) {
         db.Gigs.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (post) {
+            res.json(post);
+        });
+    });
+    app.get("/api/users/:id", function (req, res) {
+        db.User.findOne({
             where: {
                 id: req.params.id
             }
@@ -62,7 +71,7 @@ module.exports = function (app) {
                 TalentName = talent.name;
                 
                 db.User.findOne({ where: { id: UserId } }).then(user =>{
-                db.Event.create({Status:`${TalentName} wants to Grab a Gig! from You`, open: 0,  GigsId: id,  UserId: TalentId }) 
+                db.Event.create({Status:`${TalentName} wants to Grab a Gig! from ${user.name}`, open: 0,  GigsId: id,  UserId: TalentId }) 
                 console.log(user.email);
                 console.log(decoded.email);
                 const msg = {
