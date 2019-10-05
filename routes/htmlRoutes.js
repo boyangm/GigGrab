@@ -102,12 +102,14 @@ module.exports = function (app) {
        })
 
     });
-    app.get("/edit/users/:name",checktoken, function (req, res) {
-       const {name} = req.params;
-       console.log(name)
-       db.User.findOne({ where: { name } }).then(user =>{
+    app.get("/edit/profile",checktoken, function (req, res) {
+        const { token } = req.cookies;
+        let looker;
+        var decoded = jwt.verify(token, 'grabbygig');
+        console.log(decoded.email);
+        db.User.findOne({ where: { email: decoded.email } }).then(user =>{
            let post = {user};
-           res.render("namepage", post);
+           res.render("profile", post);
        })
 
     });
